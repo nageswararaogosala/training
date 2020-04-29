@@ -1,0 +1,203 @@
+import groovy.json.JsonSlurper
+import static java.nio.charset.Charset.forName
+
+buildscript {
+    ext {    	
+    	springBootVersion = '1.5.8.RELEASE'
+        springCloudVersion = '1.0.2.RELEASE'
+        //springFrameworkVersion = '4.2.5.RELEASE'
+    
+        //springBootVersion = '1.4.2.RELEASE'        
+        // extra properties
+        serviceGroup = 'com.atossyntel'
+        serviceName = 'employee-service'
+        serviceVersion = '0.1.0'
+    }
+    repositories {
+        mavenLocal()
+        maven {
+            url "${jfrog_artifactory_url}/plugins-release"
+            credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+            }
+        }
+    }
+
+    dependencies {    	
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.9.0"
+       // classpath group: 'com.comcast.esp.gradle', name: 'esp-test-task', version: '1.3.+'
+		//classpath(group: 'com.comcast.esp.gradle', name: 'esp-sonar-task', version: '0.2.+')    
+		}
+}
+
+ScalaCompileOptions.metaClass.daemonServer = true
+ ScalaCompileOptions.metaClass.fork = true
+ ScalaCompileOptions.metaClass.useAnt = false
+ ScalaCompileOptions.metaClass.useCompileDaemon = false
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'org.springframework.boot'
+//apply plugin: 'spring-boot'
+//apply plugin: 'esp-test-task'
+//apply plugin: 'esp-sonar-task'
+apply plugin: 'jacoco'
+
+group = 'com.comcast.esp'
+version = serviceVersion
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    baseName = serviceName
+    version = serviceVersion
+}
+
+repositories {
+    mavenLocal()
+    maven {
+    	url "${jfrog_artifactory_url}/libs-release"        
+        credentials {
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+        }
+    }
+    maven {
+        url "${jfrog_artifactory_url}/libs-snapshot"
+        credentials {
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+        }
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Brixton.BUILD-SNAPSHOT'
+    }
+}
+
+dependencies {
+	compile("com.zaxxer:HikariCP:2.6.0")
+	compile('com.oracle:ojdbc6:11.2.0.4.0')
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-hateoas
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '1.5.8.RELEASE'
+	
+	// https://mvnrepository.com/artifact/org.springframework/spring-web-reactive
+	compile group: 'org.springframework', name: 'spring-web-reactive', version: '5.0.0.M1'
+	
+	
+  	compile("org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}")
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.cloud:spring-cloud-config-client:1.0.2.RELEASE')
+   // compile('org.springframework.cloud:spring-cloud-starter-zuul:1.2.6.RELEASE')
+   // compile('org.springframework.cloud:spring-cloud-starter-hystrix-dashboard:1.1.5.RELEASE')
+
+   // compile('org.springframework.cloud:spring-cloud-starter-hystrix:1.2.6.RELEASE')
+    compile('org.springframework.cloud:spring-cloud-starter-eureka:1.2.6.RELEASE')
+    compile('org.springframework.cloud:spring-cloud-netflix-eureka-client:1.2.6.RELEASE')
+    
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-netflix-eureka-server
+	//compile group: 'org.springframework.cloud', name: 'spring-cloud-netflix-eureka-server', version: '1.2.6.RELEASE'   
+    
+	
+	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
+	//compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.2.3.RELEASE'
+	
+	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-web
+	//compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.2.3.RELEASE'
+	
+	
+	//compile("com.comcast.xsp:xsp-service-core:3.1.18")  
+	compile('com.comcast.xsp:xsp-service-core:1.0.0')
+            {
+                exclude group:'javax', module:'javaee-api'
+            }
+	
+   // compile("org.springframework.boot:spring-boot-starter-redis:1.1.5.RELEASE")
+    
+   // compile("org.springframework.cloud:spring-cloud-starter-bus-amqp:1.2.2.RELEASE")
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.powermock:powermock-mockito-release-full:1.6.4')
+    testCompile('org.easymock:easymock:3.4')
+    testCompile('org.powermock:powermock-modules-easymock-test:1.6.5')
+    testCompile('org.jmockit:jmockit:1.25')
+    //contractTestCompile('io.reactivex:rxjava:1.1.5')
+   // contractTestCompile('commons-collections:commons-collections:3.2.2')
+
+    // scala
+   // performanceTestCompile('org.scala-lang:scala-library:2.11.1')
+    // gatling
+   // performanceTestCompile 'io.gatling:gatling-app:2.1.6'
+   // performanceTestCompile 'io.gatling:gatling-core:2.1.6'
+   //performanceTestCompile 'io.gatling:gatling-http:2.1.6'
+   // performanceTestCompile 'io.gatling.highcharts:gatling-highcharts:2.1.6'
+}
+
+configurations {
+    deployerJars
+    //integrationTestCompile.extendsFrom testCompile
+    //integrationTestRuntime.extendsFrom testRuntime
+}
+
+
+
+
+
+eclipse {
+    classpath {
+        containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+        containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+    }
+}
+
+test {
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+    }
+}
+
+
+
+// eclipse has a hard time seeing/compiling the scala folder without this
+eclipse {
+    classpath {
+        downloadSources = true
+        //plusConfigurations += [configurations.performanceTest]
+    }
+}
+
+idea {
+    module {
+    	downloadJavadoc = true
+        downloadSources = true
+        //scopes.TEST.plus += [configurations.performanceTest]
+       // testSourceDirs += sourceSets.performanceTest.scala.srcDirs
+    }
+}
+
+// properties to override when running contract/functional/performance tests (generally, we want to point to localhost and start Moco for stubbing)
+//espArtifactOptions.additionalIncludes = ["moco-override.properties"]
+
+// performance Gatling test classes to run
+def perfTestSuite = []
+
+ext.localPerfTestOptions = []
+
+
+
+bootRun {
+    systemProperties = System.properties
+}
+
+
+ext.jarPath = "-Dspring.config.location=moco-override.yml -Dhttp.keepAlive=false build/libs/${serviceName}-${serviceVersion}.jar"
+
+
+
