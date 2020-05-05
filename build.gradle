@@ -15,20 +15,13 @@ buildscript {
     }
     repositories {
         mavenLocal()
-        maven {
-            url "${jfrog_artifactory_url}/plugins-release"
-            credentials {
-                username = "${artifactory_user}"
-                password = "${artifactory_password}"
-            }
-        }
+        
     }
 
     dependencies {    	
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
          classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.9.0"
-       // classpath group: 'com.comcast.esp.gradle', name: 'esp-test-task', version: '1.3.+'
-		//classpath(group: 'com.comcast.esp.gradle', name: 'esp-sonar-task', version: '0.2.+')    
+        
 		}
 }
 
@@ -61,18 +54,10 @@ jar {
 repositories {
     mavenLocal()
     maven {
-    	url "${jfrog_artifactory_url}/libs-release"        
-        credentials {
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-        }
+    	
     }
     maven {
-        url "${jfrog_artifactory_url}/libs-snapshot"
-        credentials {
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-        }
+        
     }
 }
 
