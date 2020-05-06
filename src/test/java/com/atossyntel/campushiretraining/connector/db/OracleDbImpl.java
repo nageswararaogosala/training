@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.atossyntel.training.connector.db;
+package com.atossyntel.campushiretraining.connector.db;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.atossyntel.training.model.Employee;
+import com.atossyntel.campushiretraining.model.Employee;
 
 /**
  * @author ngosal461

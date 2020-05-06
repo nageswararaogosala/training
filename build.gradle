@@ -14,13 +14,13 @@ buildscript {
         serviceVersion = '0.1.0'
     }
     repositories {
-        mavenLocal()
-        
+        mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
     }
 
     dependencies {    	
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.9.0"
+        // classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.9.0"
         
 		}
 }
@@ -34,7 +34,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'com.jfrog.artifactory'
+//apply plugin: 'com.jfrog.artifactory'
 apply plugin: 'org.springframework.boot'
 //apply plugin: 'spring-boot'
 //apply plugin: 'esp-test-task'
@@ -52,13 +52,9 @@ jar {
 }
 
 repositories {
-    mavenLocal()
-    maven {
-    	
-    }
-    maven {
-        
-    }
+    mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+   
 }
 
 dependencyManagement {
@@ -69,16 +65,30 @@ dependencyManagement {
 
 dependencies {
 	compile("com.zaxxer:HikariCP:2.6.0")
-	compile('com.oracle:ojdbc6:11.2.0.4.0')
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.14'
+	//compile 'mysql:mysql-connector-java:6.0.+'
+	//runtime 'mysql:mysql-connector-java:6.0.+'
+	
+
+	//compile('com.oracle:ojdbc6:11.2.0.4.0')
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-hateoas
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '1.5.8.RELEASE'
 	
 	// https://mvnrepository.com/artifact/org.springframework/spring-web-reactive
 	compile group: 'org.springframework', name: 'spring-web-reactive', version: '5.0.0.M1'
 	
+	// https://mvnrepository.com/artifact/org.springframework/spring-web
+	//compile group: 'org.springframework', name: 'spring-web', version: '5.2.3.RELEASE'
+	
 	
   	compile("org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}")
-    compile('org.springframework.boot:spring-boot-starter-web')
+  	
+  	// https://mvnrepository.com/artifact/org.springframework/spring-web
+	//compile group: 'org.springframework', name: 'spring-web', version: '5.2.6.RELEASE'
+  	
+  	//compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+  compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.cloud:spring-cloud-config-client:1.0.2.RELEASE')
    // compile('org.springframework.cloud:spring-cloud-starter-zuul:1.2.6.RELEASE')
    // compile('org.springframework.cloud:spring-cloud-starter-hystrix-dashboard:1.1.5.RELEASE')
@@ -99,10 +109,7 @@ dependencies {
 	
 	
 	//compile("com.comcast.xsp:xsp-service-core:3.1.18")  
-	compile('com.comcast.xsp:xsp-service-core:1.0.0')
-            {
-                exclude group:'javax', module:'javaee-api'
-            }
+	
 	
    // compile("org.springframework.boot:spring-boot-starter-redis:1.1.5.RELEASE")
     

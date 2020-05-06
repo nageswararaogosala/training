@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.atossyntel.training.model;
+package com.atossyntel.campushiretraining.model;
 
 import java.io.Serializable;
 

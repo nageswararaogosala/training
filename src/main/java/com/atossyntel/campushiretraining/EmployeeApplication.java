@@ -1,4 +1,4 @@
-package com.atossyntel.training;
+package com.atossyntel.campushiretraining;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

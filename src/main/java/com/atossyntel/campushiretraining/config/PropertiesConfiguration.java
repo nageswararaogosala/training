@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.atossyntel.training.config;
+package com.atossyntel.campushiretraining.config;
 
 import javax.sql.DataSource;
 
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 
-import com.atossyntel.training.connector.db.EmployeeDBJDBCTemplate;
+import com.atossyntel.campushiretraining.connector.db.EmployeeDBJDBCTemplate;
 import com.zaxxer.hikari.HikariDataSource;
 
 /**
@@ -66,8 +66,8 @@ public class PropertiesConfiguration {
 		ds.addDataSourceProperty("v$session.program", env.getProperty("datasource.employee.program"));
 		ds.addDataSourceProperty("v$session.osuser", env.getProperty("datasource.employee.osuser"));		
 		//The following jdbc timeouts will enable applications clear stale or hung database connections due to network issues.
-		ds.addDataSourceProperty("oracle.jdbc.ReadTimeout", env.getProperty("datasource.employee.read-timeout"));
-		ds.addDataSourceProperty("oracle.net.CONNECT_TIMEOUT", env.getProperty("datasource.employee.connection-timeout"));
+		//ds.addDataSourceProperty("oracle.jdbc.ReadTimeout", env.getProperty("datasource.employee.read-timeout"));
+		//ds.addDataSourceProperty("oracle.net.CONNECT_TIMEOUT", env.getProperty("datasource.employee.connection-timeout"));
 		return ds;
 	}
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.atossyntel.training.connector.db;
+package com.atossyntel.campushiretraining.connector.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import com.atossyntel.training.model.Employee;
+import com.atossyntel.campushiretraining.model.Employee;
 
 /**
  * @author ngosal461

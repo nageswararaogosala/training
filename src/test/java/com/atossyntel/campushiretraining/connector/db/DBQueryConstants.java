@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.atossyntel.training.connector.db;
+package com.atossyntel.campushiretraining.connector.db;
 
 /**
  * @author ngosal461

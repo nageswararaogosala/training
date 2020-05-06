@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.atossyntel.training.controllers;
+package com.atossyntel.campushiretraining.controllers;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.atossyntel.training.connector.db.OracleDbImpl;
-import com.atossyntel.training.model.Employee;
+import com.atossyntel.campushiretraining.connector.db.OracleDbImpl;
+import com.atossyntel.campushiretraining.model.Employee;
 
 /**
  * @author ngosal461

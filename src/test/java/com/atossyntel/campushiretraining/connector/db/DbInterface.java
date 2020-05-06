@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.atossyntel.training.connector.db;
+package com.atossyntel.campushiretraining.connector.db;
 
 import java.util.List;
 
-import com.atossyntel.training.model.Employee;
+import com.atossyntel.campushiretraining.model.Employee;
 
 /**
  * @author ngosal461
