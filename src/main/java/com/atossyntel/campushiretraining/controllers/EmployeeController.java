@@ -37,7 +37,7 @@ public class EmployeeController {
 	  }
 
 	@RequestMapping(method={RequestMethod.GET}, value="/api/atossyntel/v1/employee/{employeeId}", produces=MediaType.APPLICATION_JSON_VALUE)
-	  public ResponseEntity<Object> getp2pStatusWithoutRules(@PathVariable String employeeId) {
+	  public ResponseEntity<Object> getEmployee(@PathVariable String employeeId) {
 		 Employee emp = dbFactory.getEmployee(employeeId);
 		  return new ResponseEntity<Object>(emp, HttpStatus.OK);
 	  }
