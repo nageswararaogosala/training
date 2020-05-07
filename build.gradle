@@ -88,6 +88,7 @@ dependencies {
 	//compile group: 'org.springframework', name: 'spring-web', version: '5.2.6.RELEASE'
   	
   	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+  	
   //compile('org.springframework.boot:spring-boot-starter-web')
   //compile('org.springframework.boot:spring-boot-starter-web:1.5.8.RELEASE')
     compile('org.springframework.cloud:spring-cloud-config-client:1.0.2.RELEASE')
@@ -107,10 +108,8 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-web
 	//compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.2.3.RELEASE'
-	
-	
-	//compile("com.comcast.xsp:xsp-service-core:3.1.18")  
-	
+//compile("com.comcast.xsp:xsp-service-core:3.1.18")  
+	compile group: 'org.springframework', name: 'spring-web', version: '4.3.12.RELEASE'
 	
    // compile("org.springframework.boot:spring-boot-starter-redis:1.1.5.RELEASE")
     
