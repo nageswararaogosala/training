@@ -1,0 +1,25 @@
+DROP TABLE sakila.EMPLOYEE;
+
+CREATE TABLE sakila.EMPLOYEE
+(
+  EMPLOYEE_ID      INT DEFAULT     0,
+  EMPLOYEE_NAME    VARCHAR(50) NOT NULL,
+  MAIL             VARCHAR(50),  
+  DESIGNATION     VARCHAR(50),
+  ROLE             VARCHAR(50),
+  LOCATION        VARCHAR(50),
+  TXN_DATE         DATE  
+);
+
+
+INSERT INTO sakila.EMPLOYEE (EMPLOYEE_ID,EMPLOYEE_NAME,MAIL, ROLE, DESIGNATION, LOCATION)
+ VALUES (1, 'SiriChandana', 'xyz@gmail.com', 'Software Engineer', 'Trainee', 'Chennai');
+ commit;
+
+INSERT INTO sakila.EMPLOYEE (EMPLOYEE_ID,EMPLOYEE_NAME,MAIL, ROLE, DESIGNATION, LOCATION)
+ VALUES (2, 'Priya', 'abc@gmail.com', 'Software Engineer', 'Trainee', 'Chennai');
+ commit;
+ 
+ 
+ DELETE FROM sakila.EMPLOYEE WHERE EMPLOYEE_ID=2;
+ COMMIT;

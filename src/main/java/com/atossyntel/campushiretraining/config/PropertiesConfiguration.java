@@ -62,9 +62,9 @@ public class PropertiesConfiguration {
 		
 		ds.setConnectionInitSql(env.getProperty("datasource.employee.validation-query"));
 		ds.setJdbcUrl(env.getProperty("datasource.employee.url"));		
-		ds.addDataSourceProperty("v$session.machine", env.getProperty("datasource.employee.machine"));
-		ds.addDataSourceProperty("v$session.program", env.getProperty("datasource.employee.program"));
-		ds.addDataSourceProperty("v$session.osuser", env.getProperty("datasource.employee.osuser"));		
+		//ds.addDataSourceProperty("v$session.machine", env.getProperty("datasource.employee.machine"));
+		//ds.addDataSourceProperty("v$session.program", env.getProperty("datasource.employee.program"));
+		//ds.addDataSourceProperty("v$session.osuser", env.getProperty("datasource.employee.osuser"));		
 		//The following jdbc timeouts will enable applications clear stale or hung database connections due to network issues.
 		//ds.addDataSourceProperty("oracle.jdbc.ReadTimeout", env.getProperty("datasource.employee.read-timeout"));
 		//ds.addDataSourceProperty("oracle.net.CONNECT_TIMEOUT", env.getProperty("datasource.employee.connection-timeout"));
